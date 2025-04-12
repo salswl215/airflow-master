@@ -15,7 +15,7 @@ with DAG(
     def python_push_xcom():
         return_dict = {'status':'Good',
                        'data':[1, 2, 3],
-                       'option_cnt':100}
+                       'options_cnt':100}
         return return_dict
 
     bash_pull = BashOperator(
