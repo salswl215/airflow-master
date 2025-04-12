@@ -13,7 +13,7 @@ with DAG(
         task_id = 'bash_push',
         bash_command="echo START &&"
                      "echo XCOM_PUSHED"
-                     "{{ ti.xcom_push(key = 'bash_pusehd', value = 'first_bash_message') }} &&"
+                     "{{ ti.xcom_push(key = 'bash_pushed', value = 'first_bash_message') }} &&"
                      "echo COMPLETE"
     )
 
