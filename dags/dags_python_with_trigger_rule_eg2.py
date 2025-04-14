@@ -1,21 +1,22 @@
 from airflow import DAG
 from airflow.decorators import task
-import pendulum
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
 from airflow.exceptions import AirflowException
 
+import pendulum
+
 with DAG(
     dag_id='dags_python_with_trigger_rule_eg2',
-    start_date=pendulum.datetime(2023,4,1, tz='Asia/Seoul'),
+    start_date=pendulum.datetime(2025,4,14, tz='Asia/Seoul'),
     schedule=None,
     catchup=False
 ) as dag:
     @task.branch(task_id='branching')
     def random_branch():
         import random
-        item_list = ['A', 'B', 'C']
-        selected_item = random.choice(item_list)
+        item_lst = ['A', 'B', 'C']
+        selected_item = random.choice(item_lst)
         if selected_item == 'A':
             return 'task_a'
         elif selected_item == 'B':
@@ -30,11 +31,11 @@ with DAG(
     def task_b():
         print('정상 처리')
 
-    @task(task_id = 'task_c')
+    @task(task_id='task_c')
     def task_c():
         print('정상 처리')
 
-    @task(task_id = 'task_d', trigger_rule='none_skepped')
+    @task(task_id='task_d', trigger_rule='none_skipped')
     def task_d():
         print('정상 처리')
 
