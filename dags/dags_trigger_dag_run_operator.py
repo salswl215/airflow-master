@@ -21,7 +21,7 @@ with DAG(
         trigger_run_id=None,
         execution_date='{{data_interval_start}}',
         reset_dag_run = True,
-        wait_for_dag_run = False,
+        wait_for_completion = False,
         poke_interval=60,
         allowed_states=['success'],
         failed_states=None
