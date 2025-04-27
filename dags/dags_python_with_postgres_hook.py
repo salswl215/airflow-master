@@ -19,15 +19,16 @@ with DAG(
                 dag_id = kwargs.get('ti').dag_id
                 task_id = kwargs.get('ti').task_id
                 run_id = kwargs.get('ti').run_id
-                msg = 'insrt 수행'
+                msg = 'hook insrt 수행'
                 sql = 'insert into py_opr_dict_insrt values(%s, %s, %s, %s);'
                 cursor.execute(sql, (dag_id, task_id, run_id, msg))
                 conn.commit()
 
+
     insrt_postgres_with_hook = PythonOperator(
-        task_id = 'insrt_postgres_with_hook',
+        task_id='insrt_postgres_with_hook',
         python_callable=insrt_postgres,
-        op_args = {'postgres_conn_id':'conn-db-postgres-custom'}
+        op_kwargs={'postgres_conn_id': 'conn-db-postgres-custom'}
     )
 
     insrt_postgres_with_hook
