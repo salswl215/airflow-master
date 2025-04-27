@@ -18,8 +18,6 @@ with DAG(
         python_callable = insrt_postgres,
         op_kwargs={
             'postgres_conn_id' : 'conn-db-postgres-custom',
-            'tbl_nm': 'SearchParkInfoService_bulk1',
-            'file_nm':'/opt/airflow/files/SearchParkInfoService/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}/SearchParkInfoService.csv'}'
-        }
-
+            'tbl_nm': 'search_park_info_service',
+            'file_nm':'/opt/airflow/files/SearchParkInfoService/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}/SearchParkInfoService.csv'}
     )
