@@ -28,6 +28,7 @@ class SeoulApiDateSensor(BaseSensorOperator):
         import requests
         import json
         from dateutil.relativedelta import relativedelta
+        from datetime import datetime
         connection = BaseHook.get_connection(self.http_conn_id)
         url = f'http://{connection.host}:{connection.port}/{self.endpoint}'
         self.log.info(f'request url:{url}')
@@ -37,8 +38,8 @@ class SeoulApiDateSensor(BaseSensorOperator):
         key_nm = list(contents.keys())[0]
         row_data = contents.get(key_nm).get('row')
         last_dt = row_data[0].get(self.base_dt_col)
-        last_date = last_dt[:10]
-        last_date = last_date.replace('.', '-').replace('/', '-')
+        last_date = last_dt[:8]
+        last_date = datetime.strptime(last_date, "%Y%m%d").strftime("%Y-%m-%d")
 
         search_ymd = (context.get('data_interval_end').in_timezone('Asia/Seoul') + relativedelta(
             days=self.day_off)).strftime('%Y-%m-%d')
