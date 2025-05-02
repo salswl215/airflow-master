@@ -25,7 +25,7 @@ with DAG(
     )
 
     bash_sleep_10 = BashOperator(
-        trigger_rule='all done',     # 상위 태스크 결과에 관계없이 run
+        trigger_rule='all_done',     # 상위 태스크 결과에 관계없이 run
         task_id = 'bash_sleep_10',
         bash_command='sleep 10'
     )
