@@ -18,7 +18,7 @@ with DAG(
         postgres_hook = PostgresHook(postgres_conn_id='conn-db-postgres-airflow')
         with closing(postgres_hook.get_conn()) as conn:
             with closing(conn.cursor()) as cursor:
-                with open('opt/airflow/files/sqls/daily_dag_monitoring.sql', 'r') as sql_file:
+                with open('/opt/airflow/files/sqls/daily_dag_monitoring.sql', 'r') as sql_file:
                     cursor.execute("SET TIME ZONE = 'Asia/Seoul';")
                     sql = '\n'.join(sql_file.readlines())
                     cursor.execute(sql)
