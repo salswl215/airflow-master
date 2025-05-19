@@ -22,11 +22,12 @@ with DAG(
 
         @task(task_id='do_something')
         def do_something():
-            raise AirflowException
+            # raise AirflowException
             print('do it!')
 
         @task(task_id='teardown_task')
         def teardown_task():
+            raise AirflowException
             print('teardown!')
 
         setup_task().as_setup() >> do_something() >> teardown_task().as_teardown()
