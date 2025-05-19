@@ -6,7 +6,7 @@ with DAG(
     dag_id = 'dags_setup_n_teardown',
     schedule=None,
     start_date = pendulum.datetime(2025, 5, 19, tz ='Asia/Seoul'),
-    catup = False,
+    catchup = False,
     tags = ['update:2.10.5', 'setup-teardown']
 )as dag:
     @task(task_id = 'setup_task')
