@@ -22,6 +22,8 @@ with DAG(
     def teardown_task():
         raise AirflowException('error occured!')
 
+    # teardown Task 실패해도 dagrun success로 표시
     # setup_task().as_setup() >> do_something() >> teardown_task().as_teardown()
-    # teardown Task 실패시 dagrun Fail 되도록 하려면 on_failure_fail_dagrun=True 옵션 추가 필요
+
+    # teardown Task 실패시 dagrun Fail 되도록 하려면 on_failure_fail_dagrun=True 옵션 추가
     setup_task().as_setup() >> do_something() >> teardown_task().as_teardown(on_failure_fail_dagrun=True)
