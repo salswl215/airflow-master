@@ -16,7 +16,7 @@ with DAG(
         return file_lst
 
     @task(task_id = 'task_count_character')
-    def task_count_character():
+    def task_count_character(file):
         file_path = f'/opt/airflow/dags/{file}'
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
