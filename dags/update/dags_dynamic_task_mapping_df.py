@@ -23,7 +23,7 @@ with DAG(
     def task_read_csv_to_dict(**kwargs):
         dt = kwargs.get('data_interval_end').in_timezone('Asia/Seoul').strftime('%Y%m%d')
         file = f'/opt/airflow/files/rt_bicycle_info/{dt}/tbCycleStationInfo.csv'
-        bicycle_info_dict = pd.read_csv(file)[:10].to_dict(orient='index')
+        bicycle_info_dict = pd.read_csv(file)[:10]
         return bicycle_info_dict
 
     @task(task_id='task_count_character',
