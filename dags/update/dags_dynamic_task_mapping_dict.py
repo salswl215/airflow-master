@@ -26,13 +26,13 @@ with DAG(
         bicycle_info_dict = pd.read_csv(file)[:10].to_dict(orient='index')
         return bicycle_info_dict
 
-    @task(task_id='task_count_character',
+    @task(task_id='task_station_info',
           map_index_template="{{ station_name_index }}"
     )
     def task_station_info(station):
         # station 정보는 tuple 로 들어옴 (아래 샘플 참조)
         values_dict = station[1]
-        station_nm = values_dict.get('RENT_NM')
+        station_nm = values_dict.get('RENT_ID_NM')
         prk_cnt = values_dict.get('HOLD_NUM')
         context = get_current_context()
         context["station_name_index"] = station_nm
