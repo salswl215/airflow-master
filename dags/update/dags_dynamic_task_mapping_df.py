@@ -24,7 +24,7 @@ with DAG(
         dt = kwargs.get('data_interval_end').in_timezone('Asia/Seoul').strftime('%Y%m%d')
         file = f'/opt/airflow/files/tbCycleStationInfo/{dt}/tbCycleStationInfo.csv'
         df = pd.read_csv(file)
-        bicycle_info_dict = df.where(pd.notnull(df), None).astype(object)[:10].to_dict(orient='index')
+        bicycle_info_dict = df.where(pd.notnull(df), None).astype(object)[:10]
         return bicycle_info_dict
 
     @task(task_id='task_station_info',
