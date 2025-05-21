@@ -1,6 +1,6 @@
 import pendulum
 import os
-from airflow import DAG, task
+from airflow import DAG
 from airflow.operators.bash import BashOperator
 
 with DAG(
