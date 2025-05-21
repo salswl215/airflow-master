@@ -30,8 +30,11 @@ with DAG(
           map_index_template="{{ station_name_index }}"
     )
     def task_station_info(station):
-        station_nm = station.get('RENT_ID_NM')
-        prk_cnt = station.get('HOLD_NUM')
+        # station 정보는 tuple 로 들어옴 (아래 샘플 참조)
+        values_dict = station[1]
+        print(values_dict)
+        station_nm = values_dict.get('RENT_ID_NM')
+        prk_cnt = values_dict.get('HOLD_NUM')
         context = get_current_context()
         context["station_name_index"] = station_nm
 
