@@ -21,7 +21,7 @@ with DAG(
         task_id='rt_bicycle_info',
         dataset_nm='tbCycleStationInfo',
         path='/opt/airflow/files/tbCycleStationInfo/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash }}',
-        file_name="CycleStationInfo_{{ data_interval_end.in_timezone('Asia/Seoul').strftime('%H%M') }}.csv"
+        file_name="bikeList_{{ data_interval_end.in_timezone('Asia/Seoul').strftime('%H%M') }}.csv"
     )
 
     @task(task_id='task_producer_with_dataset_alias',
