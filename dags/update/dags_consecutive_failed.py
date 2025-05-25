@@ -1,6 +1,7 @@
 import pendulum
 from airflow.exceptions import AirflowException
 from airflow import DAG
+from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 
 # DAG 연속 실패 시 자동 DAG Pause 변경 기능(preview)
